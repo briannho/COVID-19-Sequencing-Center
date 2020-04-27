@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h1>{{title}}</h1>
+  {% for row in results %}
+    <article class="media content-section">
+      <div class="media-body">
+        <div class="article-metadata">
+          <a class="mr-2">{{ row.FirstName }} {{row.LastName }} </a>
+        </div>
+        <a class="text-muted"> {{row.SchoolName}} </a> <br/>
+        <a classs="text-muted"> {{row.SchoolCity}}, {{row.SchoolCountry}} </a> <br/>
+
+        {% if current_user.is_authenticated %}
+        <small><a class="button" href="{{ url_for('author', AuthorID=row.AuthorID) }}">To update or delete, click here</a></small>
+        {% endif %}
+
+      </div>
+    </article>
+   {% endfor %}
+	
+{% endblock content %}

@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">{{ legend }}</legend>
+            {% if legend != "Update Sequence" %}
+            <div class="form-group">
+                {{ form.AccessionID.label(class="form-control-label") }}
+                {% if form.AccessionID.errors %}
+                    {{ form.AccessionID(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.AccessionID.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.AccessionID(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            {% endif %}
+
+            <div class="form-group">
+                {{ form.SeqType.label(class="form-control-label") }}
+                {% if form.SeqType.errors %}
+                    {{ form.SeqType(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.SeqType.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.SeqType(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.Seq.label(class="form-control-label") }}
+                {% if form.Seq.errors %}
+                    {{ form.Seq(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.Seq.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.Seq(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.OrganismID.label(class="form-control-label") }}
+                {% if form.OrganismID.errors %}
+                    {{ form.OrganismID(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.OrganismID.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.OrganismID(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.SeqCountry.label(class="form-control-label") }}
+                {% if form.SeqCountry.errors %}
+                    {{ form.SeqCountry(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.SeqCountry.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.SeqCountry(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.SeqDate.label(class="form-control-label") }}
+                {% if form.SeqDate.errors %}
+                    {{ form.SeqDate(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.SeqDate.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.SeqDate(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+{% endblock content %}

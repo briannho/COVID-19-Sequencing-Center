@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h1>{{title}}</h1>
+	  {% for row in results %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              {% if not current_user.is_authenticated %}
+                <a class="mr-2" href="{{ url_for('sequence', AccessionID=row.AccessionID) }}">Accession ID: {{ row.AccessionID}}</a> <br/>
+              {% else %}
+                <a class="mr-2">Accession ID: {{ row.AccessionID}}</a> <br/>
+              {% endif %}
+              <a class="mr-2">Type: {{ row.SeqType}}</a> <br/>
+              <a class="mr-2">Organism: {{row.Genus}} {{row.Subgenus}} </a> <br/>
+              <a class="mr-2">Date Published: {{ row.SeqDate }}</a> <br/>
+            </div>
+            {% if current_user.is_authenticated %}
+            <small><a class="button" href="{{ url_for('sequence', AccessionID=row.AccessionID) }}">To update or delete, click here</a></small>
+            {% endif %}
+          </div>
+        </article>
+     {% endfor %}
+{% endblock content %}

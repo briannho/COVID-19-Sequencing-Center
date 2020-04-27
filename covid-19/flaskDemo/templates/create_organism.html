@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">{{ legend }}</legend>
+            {% if legend != "Update Organism" %}
+            <div class="form-group">
+                {{ form.OrganismID.label(class="form-control-label") }}
+                {% if form.OrganismID.errors %}
+                    {{ form.OrganismID(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.OrganismID.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.OrganismID(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            {% endif %}
+
+            <div class="form-group">
+                {{ form.Genus.label(class="form-control-label") }}
+                {% if form.Genus.errors %}
+                    {{ form.Genus(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.Genus.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.Genus(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.Subgenus.label(class="form-control-label") }}
+                {% if form.Subgenus.errors %}
+                    {{ form.Subgenus(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.Subgenus.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.Subgenus(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+{% endblock content %}

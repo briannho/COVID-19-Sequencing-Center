@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">{{ legend }}</legend>
+            {% if legend != "Update Publication" %}
+            <div class="form-group">
+                {{ form.PubID.label(class="form-control-label") }}
+                {% if form.PubID.errors %}
+                    {{ form.PubID(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.PubID.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.PubID(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            {% endif %}
+
+            <div class="form-group">
+                {{ form.Title.label(class="form-control-label") }}
+                {% if form.Title.errors %}
+                    {{ form.Title(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.Title.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.Title(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            {% if legend != "Update Publication" %}
+            <div class="form-group">
+                {{ form.AccessionID.label(class="form-control-label") }}
+                {% if form.AccessionID.errors %}
+                    {{ form.AccessionID(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.AccessionID.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.AccessionID(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            {%endif%}
+
+            {% if legend != "Update Publication" %}
+            <div class="form-group">
+                {{ form.JournalID.label(class="form-control-label") }}
+                {% if form.JournalID.errors %}
+                    {{ form.JournalID(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.JournalID.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.JournalID(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            {%endif%}
+
+            <div class="form-group">
+                {{ form.PubDate.label(class="form-control-label") }}
+                {% if form.PubDate.errors %}
+                    {{ form.PubDate(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.PubDate.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.PubDate(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.Summary.label(class="form-control-label") }}
+                {% if form.Summary.errors %}
+                    {{ form.Summary(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.Summary.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.Summary(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+{% endblock content %}

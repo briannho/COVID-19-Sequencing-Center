@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}
+  <h1> Latest Publications</h1>
+  <h6> Here is the latest on COVID-19.</h6><br/>
+	  {% for row in results %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2">{{ row.Title}}</a>
+              <a class="text-muted">{{ row.PubDate}}</a> <br/>
+              <small class="text-muted">{{ row.Authors }} </small>
+            </div>
+          </div>
+        </article>
+     {% endfor %}
+{% endblock content %}

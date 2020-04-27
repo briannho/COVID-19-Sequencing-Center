@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">{{ legend }}</legend>
+            {% if legend != "Update Author" %}
+            <div class="form-group">
+                {{ form.AuthorID.label(class="form-control-label") }}
+                {% if form.AuthorID.errors %}
+                    {{ form.AuthorID(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.AuthorID.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.AuthorID(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            {% endif %}
+
+            <div class="form-group">
+                {{ form.FirstName.label(class="form-control-label") }}
+                {% if form.FirstName.errors %}
+                    {{ form.FirstName(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.FirstName.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.FirstName(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.LastName.label(class="form-control-label") }}
+                {% if form.LastName.errors %}
+                    {{ form.LastName(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.LastName.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.LastName(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.SchoolID.label(class="form-control-label") }}
+                {% if form.SchoolID.errors %}
+                    {{ form.SchoolID(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.SchoolID.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.SchoolID(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+{% endblock content %}

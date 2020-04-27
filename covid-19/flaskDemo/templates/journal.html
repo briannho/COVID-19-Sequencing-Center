@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+  <a class="mr-2">{{ journal.JournalName }} </a> <br/>
+  {% for row in results %}
+    <article class="media content-section">
+      <div class="media-body">
+        <div class="article-metadata">        
+          	<a class="mr-2" href="{{ url_for('publication', PubID=row.PubID) }}"> {{row.Title}} </a> <br/>
+            <a class="text-muted"> Published: {{row.PubDate}} </a>
+        </div>
+      </div>
+    </article>
+  {% endfor %}
+{% endblock content %}

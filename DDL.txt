@@ -1,0 +1,87 @@
+DROP DATABASE IF EXISTS covid_19;
+CREATE DATABASE covid_19;
+
+DROP TABLE IF EXISTS covid_19.author CASCADE;
+DROP TABLE IF EXISTS covid_19.school CASCADE;
+DROP TABLE IF EXISTS covid_19.journal CASCADE;
+DROP TABLE IF EXISTS covid_19.publication CASCADE;
+DROP TABLE IF EXISTS covid_19.organism CASCADE;
+DROP TABLE IF EXISTS covid_19.sequence CASCADE;
+DROP TABLE IF EXISTS covid_19.seq_type CASCADE;
+
+CREATE TABLE seq_type (
+    type VARCHAR(10) PRIMARY KEY
+);
+
+INSERT INTO seq_type VALUES ('DNA');
+INSERT INTO seq_type VALUES ('RNA');
+INSERT INTO seq_type VALUES ('PROT');
+
+CREATE TABLE organism (
+    OrganismID NUMERIC(11,0) PRIMARY KEY,
+    Genus VARCHAR(30) NOT NULL,
+    Subgenus VARCHAR(30)
+);
+
+
+CREATE TABLE sequence (
+    AccessionID VARCHAR(30) PRIMARY KEY ,
+    Seq TEXT NOT NULL ,
+    SeqType VARCHAR(10) NOT NULL,
+    SeqCountry VARCHAR(50),
+    OrganismID NUMERIC(11,0) NOT NULL,
+    SeqDate DATE,
+
+FOREIGN KEY(SeqType) REFERENCES seq_type(type),
+FOREIGN KEY(OrganismID) REFERENCES organism(OrganismID)
+);
+
+CREATE TABLE journal (
+    JournalID NUMERIC(11,0) PRIMARY KEY,
+    JournalName VARCHAR(100) NOT NULL,
+    JournalCountry VARCHAR(50)
+);
+
+
+CREATE TABLE publication (
+    PubID NUMERIC(11,0) PRIMARY KEY,
+    Title VARCHAR(200) NOT NULL,
+    AccessionID VARCHAR(30) NOT NULL,  
+    JournalID NUMERIC(11,0),
+    PubDate DATE NOT NULL,
+    Summary TEXT,
+
+FOREIGN KEY (JournalID) REFERENCES journal(JournalID),
+FOREIGN KEY (AccessionID) REFERENCES sequence(AccessionID)   
+);
+
+CREATE TABLE school (
+    SchoolID NUMERIC(11,0) PRIMARY KEY,
+    SchoolName VARCHAR(100) NOT NULL,
+    SchoolCity VARCHAR(50),
+    SchoolState VARCHAR(50),
+    SchoolCountry VARCHAR(50)
+);
+
+
+CREATE TABLE author (
+    AuthorID NUMERIC(11,0) PRIMARY KEY,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    SchoolID NUMERIC(11,0) NOT NULL,
+ 
+FOREIGN KEY(SchoolID) REFERENCES school(SchoolID)  
+);
+
+CREATE TABLE author_publications (
+    PubID NUMERIC(11,0) NOT NULL,
+    AuthorID NUMERIC(11,0) NOT NULL,
+
+PRIMARY KEY (PubID, AuthorID),
+FOREIGN KEY (PubID) REFERENCES publication(PubID),  
+FOREIGN KEY (AuthorID) REFERENCES author(AuthorID)
+);
+
+COMMIT;
+
+
